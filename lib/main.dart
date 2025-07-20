@@ -19,20 +19,14 @@ class MyApp extends StatelessWidget {
       builder: (_, child) {
         return GetMaterialApp(
           title: 'Flutter Demo',
-          theme: ThemeData(fontFamily: "SofiaPro"),
+          theme: ThemeData(
+            fontFamily: "SofiaPro",
+            scaffoldBackgroundColor: Colors.white,
+          ),
           getPages: RouteManager.getPages(),
           initialRoute: RouteManager.initial,
         );
       },
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
   }
 }

@@ -1,10 +1,12 @@
 import 'package:benfy/core/config/app_colors.dart';
 import 'package:benfy/core/config/app_images.dart';
+import 'package:benfy/core/config/app_routes.dart';
 import 'package:benfy/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class AuthHome extends StatefulWidget {
   const AuthHome({super.key});
@@ -23,7 +25,7 @@ class _AuthHomeState extends State<AuthHome>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 800),
     );
 
     _fadeIn = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
@@ -71,7 +73,7 @@ class _AuthHomeState extends State<AuthHome>
       right: 10.w,
       child: SizedBox(
         child: TextButton(
-          onPressed: () {},
+          onPressed: () => Get.offAllNamed(AppRoutes.dashboard),
           style: ButtonStyle(
             enableFeedback: false,
             overlayColor: WidgetStateProperty.all(
@@ -158,7 +160,7 @@ class _AuthHomeState extends State<AuthHome>
             ),
             Gap(15.h),
             CustomButton(
-              onTap: () => (),
+              onTap: () => Get.offAllNamed(AppRoutes.dashboard),
               title: "Login",
               color: AppColors.appPrimaryColor,
             ),
