@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:benfy/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +34,7 @@ class CustomChoiceChips extends StatelessWidget {
                   choices[index],
                   style: TextStyle(
                     color: isSelected ? Colors.white : AppColors.appTextColor,
-                    fontSize: 14.sp,
+                    fontSize: 16.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

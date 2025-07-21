@@ -27,6 +27,11 @@ class AppTextStyle {
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
   );
+  static final TextStyle cardTitleRegular = TextStyle(
+    color: AppColors.appTextColor,
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+  );
   static final TextStyle cardAddOns = TextStyle(
     color: AppColors.appGreyTextColor,
     fontSize: 14.sp,

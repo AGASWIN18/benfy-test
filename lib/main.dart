@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             fontFamily: "SofiaPro",
             scaffoldBackgroundColor: Colors.white,
+            appBarTheme: AppBarTheme(backgroundColor: Colors.white),
           ),
           getPages: RouteManager.getPages(),
           initialRoute: RouteManager.initial,

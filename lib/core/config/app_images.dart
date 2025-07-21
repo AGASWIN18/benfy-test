@@ -28,6 +28,7 @@ class AppSvgImages {
   static String calories = "assets/svg/calories.svg";
   static String separator = "assets/svg/separator.svg";
   static String cart = "assets/svg/cart.svg";
+  static String search = "assets/svg/search.svg";
 }
 
 class AppPngImages {

@@ -3,9 +3,9 @@ import 'package:benfy/core/config/app_images.dart';
 import 'package:benfy/core/config/app_strings.dart';
 import 'package:benfy/core/config/app_text_style.dart';
 import 'package:benfy/features/home/presentation/controllers/home_screen_controller.dart';
-import 'package:benfy/features/home/presentation/widgets/recipe_card.dart';
+import 'package:benfy/features/recipe/presentation/widgets/featured_recipe_card.dart';
 import 'package:benfy/widgets/custom_choice_chips.dart';
-import 'package:benfy/widgets/custom_recipie_card.dart';
+import 'package:benfy/features/recipe/presentation/widgets/custom_recipie_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,22 +59,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         clipBehavior: Clip.none,
-        itemCount: controller.foodList.length,
+        itemCount: controller.popularRecipeList.length,
         itemBuilder: (context, index) {
-          final food = controller.foodList[index];
-          final isLast = index == controller.foodList.length - 1;
+          final recipe = controller.popularRecipeList[index];
+          final isLast = index == controller.popularRecipeList.length - 1;
 
           return Padding(
             padding: EdgeInsets.only(left: 12.w, right: isLast ? 12.w : 0),
-            child: Obx(
-              () => CustomRecipieCard(
-                imageUrl: food.imageUrl,
-                title: food.title,
-                kcal: food.kcal,
-                time: food.time,
-                isFavorite: food.isFavorite.value,
-                onFavoriteToggle: () => controller.toggleFavorite(index),
-              ),
+            child: CustomRecipeCard(
+              recipeModel: recipe,
+              onFavoriteToggle: () => controller.toggleFavorite(index),
+              isSmall: false,
+              isEditorChoice: false,
             ),
           );
         },
@@ -104,14 +100,14 @@ class _HomeScreenState extends State<HomeScreen> {
           padEnds: false,
           initialPage: 0,
         ),
-        items: controller.recipeList.map((recipe) {
+        items: controller.featuredRecipeList.map((recipe) {
           return Builder(
             builder: (BuildContext context) {
               return FeaturedRecipeCard(
-                title: recipe.title,
-                creatorName: recipe.creator,
-                creatorImage: recipe.creatorImage,
-                time: recipe.time,
+                title: recipe.title!,
+                creatorName: recipe.creator!,
+                creatorImage: recipe.creatorImage!,
+                time: recipe.time!,
               );
             },
           );
@@ -168,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Icon(
                     Icons.wb_sunny_outlined,
                     size: 18,
-                    color: AppColors.appPrimaryColor,
+                    color: AppColors.appSecondaryColor,
                   ),
                   Gap(3),
                   Text('Good Morning', style: AppTextStyle.defaultText),
