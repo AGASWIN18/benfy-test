@@ -23,8 +23,8 @@ Make sure you have the following installed:
 1. **Clone the Repository**
 
 ```bash
-git clone https://github.com/your-org/benfy.git
-cd benfy
+git clone https://github.com/AGASWIN18/benfy-test
+cd benfy-test
 ```
 
 2. **Install Dependencies**
