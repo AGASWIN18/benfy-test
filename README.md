@@ -1,16 +1,76 @@
-# benfy
+# 📱 Benfy Test App - Flutter Project
 
-A new Flutter project.
+This is a Flutter application built using Kotlin and the Flutter Gradle plugin. It includes NDK support and is configured for Android development.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 How to Run the Project
 
-A few resources to get you started if this is your first Flutter project:
+### ✅ Prerequisites
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Make sure you have the following installed:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter 3.32.0
+- Dart 3.8.0
+- Java 11
+- Android Studio with NDK version 27.0.12077973
+- A connected emulator or physical Android device
+
+---
+
+### 🔧 Setup Steps
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/your-org/benfy.git
+cd benfy
+```
+
+2. **Install Dependencies**
+
+```bash
+flutter pub get
+```
+
+3. **Run the App**
+
+```bash
+flutter run
+```
+
+This will launch the app on your connected device or emulator.
+
+---
+
+## 🛠️ Build APK
+
+### Debug APK
+
+```bash
+flutter build apk --debug
+```
+
+### Release APK
+
+```bash
+flutter build apk --release
+```
+
+Output path:  
+`build/app/outputs/flutter-apk/app-release.apk`
+
+> ⚠️ Note: Release build currently uses debug signing for demonstration purposes.
+
+---
+
+## ℹ️ Additional Info
+
+- Application ID: `com.test.benfy`
+- Compile SDK: Based on `flutter.compileSdkVersion`
+- NDK Version: `27.0.12077973`
+- JVM Target: Java 11
+
+---
+
+Made for interview demonstration purposes.
