@@ -25,9 +25,15 @@ class DashboardController extends GetxController {
 
   final List<String> icons = [
     AppSvgImages.home,
-    AppSvgImages.search,
+    AppSvgImages.searchMenu,
     AppSvgImages.notification,
     AppSvgImages.profile,
+  ];
+  final List<String> selectedIcons = [
+    AppSvgImages.homeSelect,
+    AppSvgImages.searchSelect,
+    AppSvgImages.notification,
+    AppSvgImages.profileSelect,
   ];
 
   void changeIndex(int index) {

@@ -29,6 +29,7 @@ class AppSvgImages {
   static String separator = "assets/svg/separator.svg";
   static String cart = "assets/svg/cart.svg";
   static String search = "assets/svg/search.svg";
+  static String searchMenu = "assets/svg/search-menu.svg";
   static String carbs = "assets/svg/carbs.svg";
   static String protiens = "assets/svg/proteins.svg";
   static String fats = "assets/svg/fats.svg";
@@ -36,8 +37,12 @@ class AppSvgImages {
   static String close = "assets/svg/close.svg";
   static String settings = "assets/svg/setting.svg";
   static String home = "assets/svg/home.svg";
+  static String homeSelect = "assets/svg/home-select.svg";
+  static String searchSelect = "assets/svg/search-select.svg";
   static String notification = "assets/svg/notification.svg";
+  static String notificationSelect = "assets/svg/notification-select.svg";
   static String profile = "assets/svg/profile.svg";
+  static String profileSelect = "assets/svg/profile-select.svg";
   static String chef = "assets/svg/chef.svg";
 }
 

@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               popularTitleRow(),
               Gap(5.h),
               popularRecipiesList(),
-              Gap(50.h),
+              Gap(80.h),
             ],
           ),
         ),

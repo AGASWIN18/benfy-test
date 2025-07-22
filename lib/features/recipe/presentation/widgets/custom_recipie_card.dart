@@ -95,17 +95,18 @@ class CustomRecipeCard extends StatelessWidget {
               ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.0.r),
-            child: Container(
-              width: 36.w,
-              height: 36.w,
-              decoration: BoxDecoration(
-                color: AppColors.appPrimaryColor,
+          ElevatedButton(
+            onPressed: onTap,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.appPrimaryColor,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.r),
               ),
-              child: Icon(Icons.arrow_forward, color: Colors.white, size: 20.w),
+              minimumSize: Size(36.w, 36.w),
+              padding: EdgeInsets.zero,
+              elevation: 2,
             ),
+            child: Icon(Icons.arrow_forward, color: Colors.white, size: 20.w),
           ),
         ],
       ),
@@ -114,7 +115,7 @@ class CustomRecipeCard extends StatelessWidget {
 
   Widget _buildNormalRecipeCard() {
     return InkWell(
-      onTap: isSmall ? null : onTap,
+      onTap: onTap,
       borderRadius: BorderRadius.circular(20.r),
       child: Container(
         width: isSmall ? 100.w : 185.w,

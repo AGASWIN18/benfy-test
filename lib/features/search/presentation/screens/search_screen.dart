@@ -1,5 +1,6 @@
 import 'package:benfy/core/config/app_colors.dart';
 import 'package:benfy/core/config/app_images.dart';
+import 'package:benfy/core/config/app_routes.dart';
 import 'package:benfy/core/config/app_strings.dart';
 import 'package:benfy/core/config/app_text_style.dart';
 import 'package:benfy/features/search/presentation/controllers/search_screen_controller.dart';
@@ -44,6 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
             editorChoiceTitle(),
             Gap(10.h),
             editorsChoiceList(),
+            Gap(80.h),
           ],
         ),
       ),
@@ -64,6 +66,8 @@ class _SearchScreenState extends State<SearchScreen> {
           return Padding(
             padding: EdgeInsets.only(left: 14.w, right: isLast ? 14.w : 0),
             child: CustomRecipeCard(
+              onTap: () =>
+                  Get.toNamed(AppRoutes.recipeDetail, arguments: recipe),
               recipeModel: recipe,
               isSmall: true,
               isEditorChoice: false,
@@ -86,6 +90,7 @@ class _SearchScreenState extends State<SearchScreen> {
           final recipe = controller.editorsChoiceList[index];
 
           return CustomRecipeCard(
+            onTap: () => Get.toNamed(AppRoutes.recipeDetail, arguments: recipe),
             recipeModel: recipe,
             isSmall: true,
             isEditorChoice: true,

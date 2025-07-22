@@ -1,5 +1,6 @@
 import 'package:benfy/core/config/app_colors.dart';
 import 'package:benfy/core/config/app_images.dart';
+import 'package:benfy/core/config/app_routes.dart';
 import 'package:benfy/core/config/app_strings.dart';
 import 'package:benfy/core/config/app_text_style.dart';
 import 'package:benfy/features/profile/presentation/controllers/profile_screen_controller.dart';
@@ -154,91 +155,94 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildNormalRecipeCard(RecipeModel recipe) {
-    return Container(
-      width: 175.w,
-      padding: EdgeInsets.only(top: 12.r, right: 12.r, left: 12.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromARGB(26, 0, 0, 0),
-            blurRadius: 15,
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: CustomCachedImage(
-                  imageUrl: recipe.imageUrl ?? '',
-                  width: double.infinity,
-                  height: 80.h,
-                  borderRadius: 16.r,
-                  fit: BoxFit.cover,
+    return InkWell(
+      onTap: () => Get.toNamed(AppRoutes.recipeDetail, arguments: recipe),
+      child: Container(
+        width: 175.w,
+        padding: EdgeInsets.only(top: 12.r, right: 12.r, left: 12.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(26, 0, 0, 0),
+              blurRadius: 15,
+              offset: Offset(0, 0),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CustomCachedImage(
+                    imageUrl: recipe.imageUrl ?? '',
+                    width: double.infinity,
+                    height: 80.h,
+                    borderRadius: 16.r,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Obx(
-                () => Positioned(
-                  top: 8.h,
-                  right: 8.w,
-                  child: InkWell(
-                    onTap: () => controller.toggleFavorite(recipe),
-                    child: Container(
-                      padding: EdgeInsets.all(4.r),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(9.r),
+                Obx(
+                  () => Positioned(
+                    top: 8.h,
+                    right: 8.w,
+                    child: InkWell(
+                      onTap: () => controller.toggleFavorite(recipe),
+                      child: Container(
+                        padding: EdgeInsets.all(4.r),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(9.r),
+                        ),
+                        child: recipe.isFavorite?.value == true
+                            ? SvgPicture.asset(
+                                AppSvgImages.heartBlue,
+                                width: 18.w,
+                              )
+                            : SvgPicture.asset(AppSvgImages.heart, width: 18.w),
                       ),
-                      child: recipe.isFavorite?.value == true
-                          ? SvgPicture.asset(
-                              AppSvgImages.heartBlue,
-                              width: 18.w,
-                            )
-                          : SvgPicture.asset(AppSvgImages.heart, width: 18.w),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10.h),
-          Text(
-            recipe.title ?? 'Untitled',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: AppTextStyle.cardTitle,
-          ),
-          SizedBox(height: 6.h),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: EdgeInsets.all(1.5.r),
-                decoration: BoxDecoration(
-                  color: AppColors.appSecondaryColor,
-                  shape: BoxShape.circle,
-                ),
-                child: CircleAvatar(
-                  radius: 12.r,
-                  backgroundImage: AssetImage(
-                    recipe.creatorImage ?? AppPngImages.imagePLaceHolder,
+              ],
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              recipe.title ?? 'Untitled',
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyle.cardTitle,
+            ),
+            SizedBox(height: 6.h),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(1.5.r),
+                  decoration: BoxDecoration(
+                    color: AppColors.appSecondaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: CircleAvatar(
+                    radius: 12.r,
+                    backgroundImage: AssetImage(
+                      recipe.creatorImage ?? AppPngImages.imagePLaceHolder,
+                    ),
                   ),
                 ),
-              ),
-              Gap(6.w),
-              Text(
-                recipe.creator ?? AppStrings.creator,
-                style: AppTextStyle.cardAddOns,
-              ),
-            ],
-          ),
-        ],
+                Gap(6.w),
+                Text(
+                  recipe.creator ?? AppStrings.creator,
+                  style: AppTextStyle.cardAddOns,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

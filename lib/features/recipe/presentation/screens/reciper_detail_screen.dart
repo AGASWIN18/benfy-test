@@ -1,5 +1,6 @@
 import 'package:benfy/core/config/app_colors.dart';
 import 'package:benfy/core/config/app_images.dart';
+import 'package:benfy/core/config/app_routes.dart';
 import 'package:benfy/core/config/app_strings.dart';
 import 'package:benfy/core/config/app_text_style.dart';
 import 'package:benfy/features/recipe/data/model/recipe_model.dart';
@@ -35,28 +36,6 @@ class RecipeDetailScreen extends StatelessWidget {
             ),
           ),
 
-          ///recipe detail sheet
-          DraggableScrollableSheet(
-            initialChildSize: 0.62,
-            minChildSize: 0.62,
-            maxChildSize: 0.85,
-            snap: true,
-            builder: (context, scrollController) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(24.r),
-                  ),
-                ),
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  child: _BottomSheetContent(recipeModel: recipeModel),
-                ),
-              );
-            },
-          ),
-
           /// close
           Positioned(
             top: 50.h,
@@ -64,7 +43,7 @@ class RecipeDetailScreen extends StatelessWidget {
             child: GestureDetector(
               onTap: () => Get.back(),
               child: Container(
-                padding: EdgeInsets.all(12.r),
+                padding: EdgeInsets.all(10.r),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.r),
@@ -90,7 +69,7 @@ class RecipeDetailScreen extends StatelessWidget {
                 recipeModel,
               ),
               child: Container(
-                padding: EdgeInsets.all(6.r),
+                padding: EdgeInsets.all(5.r),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10.r),
@@ -107,11 +86,31 @@ class RecipeDetailScreen extends StatelessWidget {
                     recipeModel.isFavorite!.value == true
                         ? AppSvgImages.heartBlue
                         : AppSvgImages.heart,
-                    width: 25.w,
+                    width: 23.w,
                   ),
                 ),
               ),
             ),
+          ),
+
+          ///recipe detail sheet
+          DraggableScrollableSheet(
+            initialChildSize: 0.62,
+            minChildSize: 0.62,
+            maxChildSize: 0.85,
+            snap: true,
+            builder: (context, scrollController) {
+              return ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
+                child: Container(
+                  decoration: BoxDecoration(color: Colors.white),
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    child: _BottomSheetContent(recipeModel: recipeModel),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -453,6 +452,8 @@ class _BottomSheetContent extends StatelessWidget {
                 final recipe = controller.relatedRecipeList[index];
                 return Expanded(
                   child: CustomRecipeCard(
+                    onTap: () =>
+                        Get.toNamed(AppRoutes.recipeDetail, arguments: recipe),
                     recipeModel: recipe,
                     isSmall: true,
                     isEditorChoice: false,
