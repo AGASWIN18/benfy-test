@@ -29,6 +29,16 @@ class AppSvgImages {
   static String separator = "assets/svg/separator.svg";
   static String cart = "assets/svg/cart.svg";
   static String search = "assets/svg/search.svg";
+  static String carbs = "assets/svg/carbs.svg";
+  static String protiens = "assets/svg/proteins.svg";
+  static String fats = "assets/svg/fats.svg";
+  static String kcal = "assets/svg/kcal.svg";
+  static String close = "assets/svg/close.svg";
+  static String settings = "assets/svg/setting.svg";
+  static String home = "assets/svg/home.svg";
+  static String notification = "assets/svg/notification.svg";
+  static String profile = "assets/svg/profile.svg";
+  static String chef = "assets/svg/chef.svg";
 }
 
 class AppPngImages {
@@ -37,4 +47,11 @@ class AppPngImages {
   static String profileAvator1 = "assets/images/profile-1.png";
   static String profileAvator2 = "assets/images/profile-2.png";
   static String imagePLaceHolder = "assets/images/image-placeholder.jpg";
+  static String chips = "assets/images/chips.png";
+  static String avacado = "assets/images/avacado.png";
+  static String cabbage = "assets/images/cabbage.png";
+  static String onion = "assets/images/onion.png";
+  static String peanut = "assets/images/peanuts.png";
+  static String agnes = "assets/images/profile-agnes.png";
+  static String natalia = "assets/images/profile-natalia.png";
 }

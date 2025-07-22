@@ -1,5 +1,6 @@
 import 'package:benfy/core/config/app_colors.dart';
 import 'package:benfy/core/config/app_images.dart';
+import 'package:benfy/core/config/app_routes.dart';
 import 'package:benfy/core/config/app_strings.dart';
 import 'package:benfy/core/config/app_text_style.dart';
 import 'package:benfy/features/home/presentation/controllers/home_screen_controller.dart';
@@ -68,6 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: EdgeInsets.only(left: 12.w, right: isLast ? 12.w : 0),
             child: CustomRecipeCard(
               recipeModel: recipe,
+              onTap: () =>
+                  Get.toNamed(AppRoutes.recipeDetail, arguments: recipe),
               onFavoriteToggle: () => controller.toggleFavorite(index),
               isSmall: false,
               isEditorChoice: false,

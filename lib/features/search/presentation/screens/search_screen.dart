@@ -23,32 +23,27 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
+      appBar: AppBar(
+        surfaceTintColor: Colors.white,
+        centerTitle: true,
+        title: Text(AppStrings.search, style: AppTextStyle.largeTitle),
+      ),
+      body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ///fixed con=tent
-            headerSection(),
+            Gap(5.h),
+            recipeSearchField(),
+            Gap(15.h),
             categoryChoices(),
-
-            /// scrollable content
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Gap(10.h),
-                    popularRecipesTitle(),
-                    Gap(12.h),
-                    popularRecipiesList(),
-                    Gap(12.h),
-                    editorChoiceTitle(),
-                    Gap(12.h),
-                    editorsChoiceList(),
-                  ],
-                ),
-              ),
-            ),
+            Gap(15.h),
+            popularRecipesTitle(),
+            Gap(10.h),
+            popularRecipiesList(),
+            Gap(15.h),
+            editorChoiceTitle(),
+            Gap(10.h),
+            editorsChoiceList(),
           ],
         ),
       ),
@@ -100,16 +95,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Container headerSection() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [pageTitle(), Gap(5.h), recipeSearchField()],
-      ),
-    );
-  }
-
   Padding popularRecipesTitle() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 14.0.w),
@@ -136,16 +121,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  Row pageTitle() {
-    return Row(
-      children: [
-        Icon(Icons.arrow_back_ios, size: 18),
-        Gap(100.w),
-        Text(AppStrings.search, style: AppTextStyle.largeTitle),
-      ],
-    );
-  }
-
   Widget categoryChoices() {
     return CustomChoiceChips(
       choices: controller.categoryChoices,
@@ -154,28 +129,31 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  TextField recipeSearchField() {
-    return TextField(
-      keyboardType: TextInputType.name,
-      decoration: InputDecoration(
-        hintText: "Search",
-        hintStyle: AppTextStyle.cardAddOns,
-        prefixIcon: Padding(
-          padding: EdgeInsets.all(10.0).r,
-          child: SvgPicture.asset(AppSvgImages.search),
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 12.h),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(color: AppColors.appGreyTextColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(width: 2.w, color: Colors.grey[200]!),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide(width: 2.w, color: Colors.grey[200]!),
+  Widget recipeSearchField() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+      child: TextField(
+        keyboardType: TextInputType.name,
+        decoration: InputDecoration(
+          hintText: "Search",
+          hintStyle: AppTextStyle.cardAddOns,
+          prefixIcon: Padding(
+            padding: EdgeInsets.all(10.0).r,
+            child: SvgPicture.asset(AppSvgImages.search),
+          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.r),
+            borderSide: BorderSide(color: AppColors.appGreyTextColor),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.r),
+            borderSide: BorderSide(width: 2.w, color: Colors.grey[200]!),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.r),
+            borderSide: BorderSide(width: 2.w, color: Colors.grey[200]!),
+          ),
         ),
       ),
     );

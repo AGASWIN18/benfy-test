@@ -7,6 +7,11 @@ class AppTextStyle {
     fontSize: 14.sp,
     color: AppColors.appTextColor,
   );
+  static final TextStyle mediumText = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.appTextColor,
+  );
   static final TextStyle largeTitle = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,

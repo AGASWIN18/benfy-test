@@ -26,12 +26,7 @@ class CustomRecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: isEditorChoice
-          ? _buildEditorChoiceCard()
-          : _buildNormalRecipeCard(),
-    );
+    return isEditorChoice ? _buildEditorChoiceCard() : _buildNormalRecipeCard();
   }
 
   Widget _buildEditorChoiceCard() {
@@ -118,101 +113,108 @@ class CustomRecipeCard extends StatelessWidget {
   }
 
   Widget _buildNormalRecipeCard() {
-    return Container(
-      width: isSmall ? 100.w : 185.w,
-      padding: isSmall ? EdgeInsets.all(8.r) : EdgeInsets.all(13.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.r),
-        boxShadow: const [
-          BoxShadow(
-            color: Color.fromARGB(26, 0, 0, 0),
-            blurRadius: 15,
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: CustomCachedImage(
-                  imageUrl: recipeModel.imageUrl ?? '',
-                  width: double.infinity,
-                  height: isSmall ? 70.h : 110.h,
-                  borderRadius: 16.r,
-                  fit: BoxFit.cover,
+    return InkWell(
+      onTap: isSmall ? null : onTap,
+      borderRadius: BorderRadius.circular(20.r),
+      child: Container(
+        width: isSmall ? 100.w : 185.w,
+        padding: isSmall ? EdgeInsets.all(8.r) : EdgeInsets.all(13.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromARGB(26, 0, 0, 0),
+              blurRadius: 15,
+              offset: Offset(0, 0),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CustomCachedImage(
+                    imageUrl: recipeModel.imageUrl ?? '',
+                    width: double.infinity,
+                    height: isSmall ? 70.h : 110.h,
+                    borderRadius: 16.r,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              if (!isSmall)
-                Obx(
-                  () => Positioned(
-                    top: 8.h,
-                    right: 8.w,
-                    child: InkWell(
-                      onTap: onFavoriteToggle,
-                      child: Container(
-                        padding: EdgeInsets.all(4.r),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(4.r),
+                if (!isSmall)
+                  Obx(
+                    () => Positioned(
+                      top: 8.h,
+                      right: 8.w,
+                      child: InkWell(
+                        onTap: onFavoriteToggle,
+                        child: Container(
+                          padding: EdgeInsets.all(4.r),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(4.r),
+                          ),
+                          child: recipeModel.isFavorite?.value == true
+                              ? SvgPicture.asset(
+                                  AppSvgImages.heartBlue,
+                                  width: 18.w,
+                                )
+                              : SvgPicture.asset(
+                                  AppSvgImages.heart,
+                                  width: 18.w,
+                                ),
                         ),
-                        child: recipeModel.isFavorite?.value == true
-                            ? SvgPicture.asset(
-                                AppSvgImages.heartBlue,
-                                width: 18.w,
-                              )
-                            : SvgPicture.asset(AppSvgImages.heart, width: 18.w),
                       ),
                     ),
                   ),
-                ),
-            ],
-          ),
-          SizedBox(height: isSmall ? 5.h : 12.h),
-          Text(
-            recipeModel.title ?? 'Untitled',
-            maxLines: isSmall ? 1 : 2,
-            overflow: TextOverflow.ellipsis,
-            style: isSmall
-                ? AppTextStyle.cardTitleRegular
-                : AppTextStyle.cardTitle,
-          ),
-          if (!isSmall)
-            Column(
-              children: [
-                SizedBox(height: 5.h),
-                Row(
-                  children: [
-                    SvgPicture.asset(AppSvgImages.calories),
-                    SizedBox(width: 3.w),
-                    Text(
-                      '${recipeModel.kcal ?? '--'} Kcal',
-                      style: AppTextStyle.cardAddOns,
-                    ),
-                    SizedBox(width: 6.w),
-                    SvgPicture.asset(AppSvgImages.separator),
-                    SizedBox(width: 6.w),
-                    SvgPicture.asset(
-                      AppSvgImages.clock,
-                      colorFilter: ColorFilter.mode(
-                        AppColors.appGreyTextColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    SizedBox(width: 3.w),
-                    Text(
-                      '${recipeModel.time ?? '--'} Min',
-                      style: AppTextStyle.cardAddOns,
-                    ),
-                  ],
-                ),
               ],
             ),
-        ],
+            SizedBox(height: isSmall ? 5.h : 12.h),
+            Text(
+              recipeModel.title ?? 'Untitled',
+              maxLines: isSmall ? 1 : 2,
+              overflow: TextOverflow.ellipsis,
+              style: isSmall
+                  ? AppTextStyle.cardTitleRegular
+                  : AppTextStyle.cardTitle,
+            ),
+            if (!isSmall)
+              Column(
+                children: [
+                  SizedBox(height: 5.h),
+                  Row(
+                    children: [
+                      SvgPicture.asset(AppSvgImages.calories),
+                      SizedBox(width: 3.w),
+                      Text(
+                        '${recipeModel.kcal ?? '--'} Kcal',
+                        style: AppTextStyle.cardAddOns,
+                      ),
+                      SizedBox(width: 6.w),
+                      SvgPicture.asset(AppSvgImages.separator),
+                      SizedBox(width: 6.w),
+                      SvgPicture.asset(
+                        AppSvgImages.clock,
+                        colorFilter: ColorFilter.mode(
+                          AppColors.appGreyTextColor,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                      SizedBox(width: 3.w),
+                      Text(
+                        '${recipeModel.time ?? '--'} Min',
+                        style: AppTextStyle.cardAddOns,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+          ],
+        ),
       ),
     );
   }
