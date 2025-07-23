@@ -49,7 +49,6 @@ class _AuthHomeState extends State<AuthHome>
       backgroundColor: AppColors.appSecondaryColor,
       body: Stack(
         children: [
-          laterButton(),
           bgCurveVector(),
           bgDotVectors(),
           leafVectors(),
@@ -62,12 +61,13 @@ class _AuthHomeState extends State<AuthHome>
           authTextWidget(),
           // authLoginButton(),
           // authCreateAccountButton(),
+          laterButton(),
         ],
       ),
     );
   }
 
-  Positioned laterButton() {
+  Widget laterButton() {
     return Positioned(
       top: 50.h,
       right: 10.w,
